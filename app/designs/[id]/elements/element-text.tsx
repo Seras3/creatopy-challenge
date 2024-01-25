@@ -21,9 +21,13 @@ const ElementText = (props: ElementTextProps) => {
 
   const commonStyle: CSSProperties = {
     position: "absolute",
-    ...getTransformStyles(data),
-    ...getDimensionsStyles(data),
-    ...getTextStyles(data),
+    ...getTransformStyles({ ...data, scale: undefined }),
+    ...getDimensionsStyles({
+      ...data,
+      width: data.width * (data.scale ?? 1),
+      height: data.height * (data.scale ?? 1),
+    }),
+    ...getTextStyles({ ...data, fontSize: data.fontSize * (data.scale ?? 1) }),
   }
 
   const renderSlateConfigNode = (node: JsonTextSlateConfigNode, key: Key) => {
