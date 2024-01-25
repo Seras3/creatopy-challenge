@@ -20,7 +20,7 @@ const ElementText = (props: ElementTextProps) => {
   const { data } = props
 
   const commonStyle: CSSProperties = {
-    scale: data.scale,
+    position: "absolute",
     ...getTransformStyles(data),
     ...getDimensionsStyles(data),
     ...getTextStyles(data),
@@ -57,8 +57,8 @@ const ElementText = (props: ElementTextProps) => {
             <span
               key={index}
               style={{
-                color: child.color,
                 ...getFontStyles(child.fontSettings),
+                ...getTextStyles(child),
               }}
             >
               {child.text}

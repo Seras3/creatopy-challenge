@@ -9,7 +9,6 @@ const Slide = (props: SlideProps) => {
   const {
     data: { properties, elements },
   } = props
-
   return <div>{renderDesignElements(elements)}</div>
 }
 

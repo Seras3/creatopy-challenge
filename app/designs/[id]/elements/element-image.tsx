@@ -20,12 +20,12 @@ const ElementImage = (props: ElementImageProps) => {
       src={`${process.env.ASSETS_BASE_URL}/${data.url}`}
       alt={data.originalName ?? `Image ${data.url}`}
       style={{
-        ...getDimensionsStyles(data),
-        objectFit: "cover",
         position: "absolute",
+        objectFit: "cover",
+        mixBlendMode: data.blendMode,
+        ...getDimensionsStyles(data),
         ...getTransformStyles(data),
         ...getFilterStyles(data),
-        mixBlendMode: data.blendMode,
       }}
     />
   )

@@ -1,12 +1,14 @@
-import { CSSProperties } from "react"
 import { JsonDesign } from "../../types/json-design.types"
 
 import renderDesignElements from "./utils/render-design-elements"
-import { getDimensionsStyles } from "./utils/get-styles"
+import {
+  getBackgroundDesignStyles,
+  getDimensionsStyles,
+} from "./utils/get-styles"
+import Banner from "./banner"
 
 interface AdPageProps {
   params: { id: string }
-  design: any
 }
 
 type JsonDesignResponse = {
@@ -23,20 +25,14 @@ const AdPage = async ({ params }: AdPageProps) => {
 
   const containerProps = designResponse.banner.properties
 
-  const containerStyles: CSSProperties = {
-    ...getDimensionsStyles(containerProps),
-    backgroundColor:
-      containerProps.backgroundColor?.type === "solid"
-        ? containerProps.backgroundColor.scolor
-        : undefined,
-    transform: `scale(2, 2)`,
-    transformOrigin: `0px 0px 0px`,
-  }
-
   return (
-    <div style={containerStyles}>
+    <Banner
+      width={containerProps.width}
+      height={containerProps.height}
+      style={{ ...getBackgroundDesignStyles(containerProps.backgroundColor) }}
+    >
       {renderDesignElements(designResponse.banner.elements)}
-    </div>
+    </Banner>
   )
 }
 

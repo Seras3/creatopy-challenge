@@ -3,6 +3,7 @@ import {
   JsonAdjustColor,
   JsonBackground,
   JsonBorder,
+  JsonDesignBackground,
   JsonFontSettings,
   JsonShadow,
   JsonTextAlignment,
@@ -32,11 +33,15 @@ export const getBorderStyles = (data?: JsonBorder) =>
     : {}
 
 export const getTransformStyles = (data: {
-  x: number
-  y: number
-  rotation: number
+  x?: number
+  y?: number
+  rotation?: number
+  scale?: number
 }) => ({
-  transform: `translate(${data.x}px, ${data.y}px) rotate(${data.rotation}deg)`,
+  transform: data.rotation ? `rotate(${data.rotation}deg)` : undefined,
+  left: data.x ? `${data.x}px` : undefined,
+  top: data.y ? `${data.y}px` : undefined,
+  scale: data.scale,
 })
 
 export const getFontStyles = (data?: JsonFontSettings) => {
@@ -119,5 +124,16 @@ export const getBackgroundStyles = (data?: JsonBackground) => {
           .map((g) => `${g.c} ${g.p}%`)
           .join(", ")})`,
       }
+  }
+}
+
+export const getBackgroundDesignStyles = (data?: JsonDesignBackground) => {
+  if (data?.useBorder) {
+    return {
+      ...getBackgroundStyles(data),
+      border: `1px solid ${data.borderColor}`,
+    }
+  } else {
+    return { ...getBackgroundStyles(data) }
   }
 }
