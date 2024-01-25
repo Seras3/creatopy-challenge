@@ -31,7 +31,7 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 
 ## Bonus
-✅ Docs  
+✅ [Docs](https://whimsical.com/creatopy-challenge-UTMdiDdnV9mwSc5xQhKoxL)  
 ✅ Other Elements  
  - [ElementButton](./app/designs/[id]/elements/element-button.tsx)
  - [Handle all background types](./app/designs/[id]/utils/get-styles.ts)
